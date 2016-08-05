@@ -6,35 +6,44 @@ import android.widget.EditText;
 
 public class StudentFormViewHelper {
 
-
     private final Activity activity;
 
     StudentFormViewHelper(Activity activity){
         this.activity = activity;
     }
 
-    public String getStudentName() {
-        EditText studentNameField = (EditText)this.activity.findViewById(R.id.student_form_name);
-        return studentNameField.getText().toString();
+    private String getTextFieldValue(int id){
+        EditText  field= (EditText)this.activity.findViewById(id);
+        return field.getText().toString();
     }
 
-    public String getStudentAddress() {
-        EditText studentAddressField = (EditText)this.activity.findViewById(R.id.student_form_address);
-        return studentAddressField.getText().toString();
+    public Student createStudent(){
+        return new Student(
+                getName(),
+                getEmail(),
+                getAddress(),
+                getPhoneNumber(),
+                getWebsite()
+        );
     }
 
-    public String getStudentEmail() {
-        EditText studentEmailField = (EditText)this.activity.findViewById(R.id.student_form_email);
-        return studentEmailField.getText().toString();
+    private String getName() {
+        return getTextFieldValue(R.id.student_form_name);
     }
 
-    public String getStudentPhone() {
-        EditText studentPhoneField = (EditText)this.activity.findViewById(R.id.student_form_phone);
-        return studentPhoneField.getText().toString();
+    private String getAddress() {
+        return getTextFieldValue(R.id.student_form_address);
     }
 
-    public String getStudentWebsite() {
-        EditText studentWebsiteField = (EditText)this.activity.findViewById(R.id.student_form_website);
-        return studentWebsiteField.getText().toString();
+    private String getEmail() {
+        return getTextFieldValue(R.id.student_form_email);
+    }
+
+    private String getPhoneNumber() {
+        return getTextFieldValue(R.id.student_form_phone);
+    }
+
+    private String getWebsite() {
+        return getTextFieldValue(R.id.student_form_website);
     }
 }
