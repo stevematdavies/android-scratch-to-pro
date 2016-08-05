@@ -26,6 +26,7 @@ public class StudentFormViewHelper {
                 getPhoneNumber(),
                 getWebsite(),
                 getRating()
+
         );
     }
 
@@ -50,7 +51,7 @@ public class StudentFormViewHelper {
     }
 
     private Float getRating() {
-        RatingBar rating = (RatingBar)activity.findViewById(R.id.student_form_rating);
-        return rating.getRating();
+        RatingBar ratingBar = (RatingBar)activity.findViewById(R.id.student_form_rating);
+        return ratingBar.getRating();
     }
 }

@@ -5,7 +5,7 @@ package com.example.steve.contacts;
  */
 public class Student {
 
-
+    private int id;
     private final String name;
     private final String email;
     private final String address;
@@ -13,7 +13,7 @@ public class Student {
     private final String website;
     private final Float rating;
 
-    Student(String name, String email, String address, String phoneNumber, String website, Float rating){
+    Student(String name, String email, String address, String phoneNumber, String website,Float rating){
         this.name = name;
         this.email = email;
         this.address = address;
