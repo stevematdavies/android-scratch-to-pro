@@ -2,6 +2,7 @@ package com.example.steve.contacts;
 
 import android.app.Activity;
 import android.widget.EditText;
+import android.widget.RatingBar;
 
 
 public class StudentFormViewHelper {
@@ -23,7 +24,8 @@ public class StudentFormViewHelper {
                 getEmail(),
                 getAddress(),
                 getPhoneNumber(),
-                getWebsite()
+                getWebsite(),
+                getRating()
         );
     }
 
@@ -45,5 +47,10 @@ public class StudentFormViewHelper {
 
     private String getWebsite() {
         return getTextFieldValue(R.id.student_form_website);
+    }
+
+    private Float getRating() {
+        RatingBar rating = (RatingBar)activity.findViewById(R.id.student_form_rating);
+        return rating.getRating();
     }
 }

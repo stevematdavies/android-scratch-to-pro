@@ -26,7 +26,8 @@ public class StudentFormActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.menu_student_form_confirm_button) {
             StudentFormViewHelper helper = new StudentFormViewHelper(this);
             Student student = helper.createStudent();
-            Toast.makeText(StudentFormActivity.this, "\""+ student.getName() + "\" was created",Toast.LENGTH_SHORT).show();
+            String message = "\""+ student.getName() + "\" was created with rating: "+student.getRating();
+            Toast.makeText(StudentFormActivity.this, message,Toast.LENGTH_SHORT).show();
             finish();
         }
         return super.onOptionsItemSelected(item);

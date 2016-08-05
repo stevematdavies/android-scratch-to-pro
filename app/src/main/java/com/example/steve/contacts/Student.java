@@ -11,16 +11,22 @@ public class Student {
     private final String address;
     private final String phoneNumber;
     private final String website;
+    private final Float rating;
 
-    Student(String name, String email, String address, String phoneNumber, String website){
+    Student(String name, String email, String address, String phoneNumber, String website, Float rating){
         this.name = name;
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.website = website;
+        this.rating = rating;
     }
 
     public String getName() {
         return name;
+    }
+
+    public Float getRating(){
+        return rating;
     }
 }
