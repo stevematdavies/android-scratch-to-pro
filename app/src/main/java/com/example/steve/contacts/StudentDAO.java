@@ -36,12 +36,8 @@ public class StudentDAO extends SQLiteOpenHelper {
     }
 
     public void insert(Student student) {
-        ContentValues content = new ContentValues();
-        content.put("name", student.getName());
-        content.put("rating", student.getRating());
-
         SQLiteDatabase database = getWritableDatabase();
-        database.insert("students",null, content);
+        database.insert("students",null, student.toContentValues());
     }
 
     public List<Student> getStudents() {

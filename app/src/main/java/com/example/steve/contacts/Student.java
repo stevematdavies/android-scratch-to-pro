@@ -1,8 +1,7 @@
 package com.example.steve.contacts;
 
-/**
- * Created by steve on 5.8.2016.
- */
+import android.content.ContentValues;
+
 public class Student {
 
     private Integer id;
@@ -12,6 +11,7 @@ public class Student {
     private final String phoneNumber;
     private final String website;
     private final Float rating;
+
 
     public Student(String name, String email, String address, String phoneNumber, String website,Float rating){
 
@@ -34,6 +34,26 @@ public class Student {
         this.rating = rating;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
     public String getName() {
         return name;
     }
@@ -45,5 +65,16 @@ public class Student {
     @Override
     public String toString() {
         return id + " " +name;
+    }
+
+    public ContentValues toContentValues() {
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("address", address);
+        values.put("email", email);
+        values.put("phoneNumber", phoneNumber);
+        values.put("website", website);
+        values.put("rating",rating);
+        return values;
     }
 }
