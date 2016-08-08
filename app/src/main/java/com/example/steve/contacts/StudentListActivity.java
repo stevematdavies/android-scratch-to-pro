@@ -48,7 +48,6 @@ public class StudentListActivity extends AppCompatActivity {
         StudentDAO dao = new StudentDAO(this);
         List<Student>students = dao.getStudents();
         dao.close();
-
         ArrayAdapter<Student> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, students);
         getStudentsList().setAdapter(adapter);
     }
@@ -57,12 +56,15 @@ public class StudentListActivity extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
         final Student student = (Student)getStudentsList().getItemAtPosition(info.position);
-
         MenuItem itemToRemove = menu.add("Remove");
         itemToRemove.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(StudentListActivity.this, "Removing: \""+student.getName()+"\"", Toast.LENGTH_SHORT).show();;
+                StudentDAO dao = new StudentDAO(StudentListActivity.this);
+                dao.remove(student);
+                dao.close();
+                Toast.makeText(StudentListActivity.this, "Removing: \""+student.getName()+"\"", Toast.LENGTH_SHORT).show();
+                loadStudents();
                 return true;
             }
         });
