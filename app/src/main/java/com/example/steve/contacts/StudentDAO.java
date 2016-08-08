@@ -19,7 +19,7 @@ public class StudentDAO extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE students (" +
-                        "id INTEGER PRIMARY_KEY AUTOINCREMENT," +
+                        "id INTEGER PRIMARY KEY," +
                         "name TEXT NOT NULL,"+
                         "address TEXT," +
                         "website TEXT," +
