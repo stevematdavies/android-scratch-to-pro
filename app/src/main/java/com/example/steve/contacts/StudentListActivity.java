@@ -14,19 +14,13 @@ public class StudentListActivity extends AppCompatActivity {
 
     Button newStudentButton;
     ListView studentsList;
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<Student> adapter;
     List<Student> students;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
-
-        // TODO load Students from Database
-        //students = new String[] {"Guilherme","Paulo","Ana","Maria Lucia","Carlos","Daniela"};
-        studentsList = (ListView)findViewById(R.id.student_list_list);
-        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,students);
-        //studentsList.setAdapter(adapter);
         newStudentButton = (Button) findViewById(R.id.student_list_new_student_button);
         newStudentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,5 +29,20 @@ public class StudentListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadStudents();
+    }
+
+    private void loadStudents() {
+        StudentDAO dao = new StudentDAO(this);
+        List<Student>students = dao.getStudents();
+        dao.close();
+        studentsList = (ListView)findViewById(R.id.student_list_list);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, students);
+        studentsList.setAdapter(adapter);
     }
 }

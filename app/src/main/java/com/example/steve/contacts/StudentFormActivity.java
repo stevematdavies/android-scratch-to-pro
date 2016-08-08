@@ -30,6 +30,7 @@ public class StudentFormActivity extends AppCompatActivity {
             StudentDAO dao = new StudentDAO(this);
             dao.insert(student);
             dao.close();
+
             String message = "\""+ student.getName() + "\" was created with rating: "+student.getRating();
             Toast.makeText(StudentFormActivity.this, message,Toast.LENGTH_SHORT).show();
             finish();

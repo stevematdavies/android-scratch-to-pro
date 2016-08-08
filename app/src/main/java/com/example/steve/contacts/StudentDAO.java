@@ -2,8 +2,12 @@ package com.example.steve.contacts;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentDAO extends SQLiteOpenHelper {
 
@@ -15,7 +19,7 @@ public class StudentDAO extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE students (" +
-                        "id INTEGER PRIMARY_KEY," +
+                        "id INTEGER PRIMARY_KEY AUTOINCREMENT," +
                         "name TEXT NOT NULL,"+
                         "address TEXT," +
                         "website TEXT," +
@@ -39,4 +43,24 @@ public class StudentDAO extends SQLiteOpenHelper {
         SQLiteDatabase database = getWritableDatabase();
         database.insert("students",null, content);
     }
+
+    public List<Student> getStudents() {
+        List<Student> students = new ArrayList<>();
+        SQLiteDatabase readableDatabase = getReadableDatabase();
+        Cursor cursor = readableDatabase.rawQuery("SELECT * FROM students",null);
+        while(cursor.moveToNext()) {
+            Integer id = cursor.getInt(cursor.getColumnIndex("id"));
+            String name =  cursor.getString(cursor.getColumnIndex("name"));
+            String address =  cursor.getString(cursor.getColumnIndex("address"));
+            String website =  cursor.getString(cursor.getColumnIndex("website"));
+            String email =  cursor.getString(cursor.getColumnIndex("email"));
+            String phoneNumber =  cursor.getString(cursor.getColumnIndex("phoneNumber"));
+            Float rating =  cursor.getFloat(cursor.getColumnIndex("rating"));
+            Student student = new Student(id, name, email, address, phoneNumber, website, rating);
+            students.add(student);
+        }
+        cursor.close();
+        return students;
+    }
 }
+
