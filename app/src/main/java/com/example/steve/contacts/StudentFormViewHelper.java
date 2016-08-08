@@ -54,4 +54,19 @@ public class StudentFormViewHelper {
         RatingBar ratingBar = (RatingBar)activity.findViewById(R.id.student_form_rating);
         return ratingBar.getRating();
     }
+
+    public void populateForm(Student student) {
+        fill(R.id.student_form_name, student.getName());
+        fill(R.id.student_form_address, student.getAddress());
+        fill(R.id.student_form_email, student.getEmail());
+        fill(R.id.student_form_phone, student.getPhoneNumber());
+        fill(R.id.student_form_website, student.getWebsite());
+
+        RatingBar rating = (RatingBar) activity.findViewById(R.id.student_form_rating);
+        rating.setRating(student.getRating());
+    }
+
+    private void fill(int id, String value) {
+        ((EditText) activity.findViewById(id)).setText(value);
+    }
 }

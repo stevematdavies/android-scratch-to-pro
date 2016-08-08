@@ -20,7 +20,19 @@ public class StudentListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_list);
+
         registerForContextMenu(getStudentsList());
+
+        getStudentsList().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> studentsList, View item, int position, long id) {
+                Student student = (Student) studentsList.getItemAtPosition(position);
+                Intent intent = new Intent(StudentListActivity.this, StudentFormActivity.class);
+                intent.putExtra("student", student);
+                startActivity(intent);
+            }
+        });
+
         getAddStudentButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

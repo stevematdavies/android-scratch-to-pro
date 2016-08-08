@@ -2,9 +2,11 @@ package com.example.steve.contacts;
 
 import android.content.ContentValues;
 
-public class Student {
+import java.io.Serializable;
 
-    private Integer id;
+public class Student implements Serializable {
+
+    private int id;
     private final String name;
     private final String email;
     private final String address;
@@ -23,7 +25,7 @@ public class Student {
         this.rating = rating;
     }
 
-    public Student(Integer id, String name, String email, String address, String phoneNumber, String website, Float rating) {
+    public Student(int id, String name, String email, String address, String phoneNumber, String website, Float rating) {
 
         this.id = id;
         this.name = name;
@@ -34,7 +36,7 @@ public class Student {
         this.rating = rating;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
