@@ -54,8 +54,14 @@ public class StudentListActivity extends AppCompatActivity {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        final Student student = (Student)getStudentsList().getItemAtPosition(info.position);
+        if (v.equals(getStudentsList())) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            Student student = (Student)getStudentsList().getItemAtPosition(info.position);
+            showContextMenuForStudent(menu, student);
+        }
+    }
+
+    private void showContextMenuForStudent(ContextMenu menu, final Student student) {
         MenuItem itemToRemove = menu.add("Remove");
         itemToRemove.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override

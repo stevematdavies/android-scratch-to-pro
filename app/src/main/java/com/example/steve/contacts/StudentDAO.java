@@ -27,7 +27,6 @@ public class StudentDAO extends SQLiteOpenHelper {
                         "phoneNumber TEXT," +
                         "rating REAL);";
         db.execSQL(sql);
-
     }
 
     @Override
